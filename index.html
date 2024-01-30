@@ -1,0 +1,1193 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/leaflet-search.css">
+        <style>
+        #map {
+            width: 1900px;
+            height: 900px;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet-svg-shape-markers.min.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet-search.js"></script>
+        <script src="data/Conuentus_2.js"></script>
+        <script src="data/Provincia_3.js"></script>
+        <script src="data/Miliaria_4.js"></script>
+        <script src="data/Mansionesmutationesetal_5.js"></script>
+        <script src="data/Stipendiariaetal_6.js"></script>
+        <script src="data/Latinorum_7.js"></script>
+        <script src="data/CiviumRomanorum_8.js"></script>
+        <script src="data/Coloniae_9.js"></script>
+        <script src="data/CaputProvinciae_10.js"></script>
+        <script src="data/Sigillagraffitietal_11.js"></script>
+        <script src="data/Epigraphia_12.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:10
+        }).fitBounds([[42.468255138720295,-0.680331425261174],[43.588872803892315,2.098613855390429]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        map.createPane('pane_EsriWorldImagery_0');
+        map.getPane('pane_EsriWorldImagery_0').style.zIndex = 400;
+        var layer_EsriWorldImagery_0 = L.tileLayer('https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+            pane: 'pane_EsriWorldImagery_0',
+            opacity: 1.0,
+            attribution: '<a href="https://wiki.openstreetmap.org/wiki/Esri">Esri. Terms & Feedback</a>',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 22
+        });
+        layer_EsriWorldImagery_0;
+        map.addLayer(layer_EsriWorldImagery_0);
+        map.createPane('pane_ESRIWorldHillshade_1');
+        map.getPane('pane_ESRIWorldHillshade_1').style.zIndex = 401;
+        var layer_ESRIWorldHillshade_1 = L.tileLayer('https://cawm.lib.uiowa.edu/tiles/{z}/{x}/{y}.png', {
+            pane: 'pane_ESRIWorldHillshade_1',
+            opacity: 1.0,
+            attribution: '<a href="https://cawm.lib.uiowa.edu/#tiles/leaflet">CAWM</a>',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 19
+        });
+        layer_ESRIWorldHillshade_1;
+        map.addLayer(layer_ESRIWorldHillshade_1);
+        function pop_Conuentus_2(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Fontes'] !== null ? autolinker.link(feature.properties['Fontes'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        
+            var southWest = L.latLng(42.10462174056863, -2.2180138874696467),
+northEast = L.latLng(43.46381543669745, 0.9906479512051021);
+var bounds = L.latLngBounds(southWest, northEast);
+
+map.setMaxBounds(bounds);
+map.on('drag', function() {
+    map.panInsideBounds(bounds, { animate: false });
+});
+        }
+
+        function style_Conuentus_2_0() {
+            return {
+                pane: 'pane_Conuentus_2',
+                opacity: 1,
+                color: 'rgba(74,59,33,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+        map.createPane('pane_Conuentus_2');
+        map.getPane('pane_Conuentus_2').style.zIndex = 402;
+        map.getPane('pane_Conuentus_2').style['mix-blend-mode'] = 'normal';
+        var layer_Conuentus_2 = new L.geoJson(json_Conuentus_2, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_Conuentus_2',
+            layerName: 'layer_Conuentus_2',
+            pane: 'pane_Conuentus_2',
+            onEachFeature: pop_Conuentus_2,
+            style: style_Conuentus_2_0,
+        });
+        bounds_group.addLayer(layer_Conuentus_2);
+        map.addLayer(layer_Conuentus_2);
+        function pop_Provincia_3(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Fontes'] !== null ? autolinker.link(feature.properties['Fontes'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Categoría'] !== null ? autolinker.link(feature.properties['Categoría'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Provincia_3_0() {
+            return {
+                pane: 'pane_Provincia_3',
+                opacity: 1,
+                color: 'rgba(74,59,33,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 2.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+        map.createPane('pane_Provincia_3');
+        map.getPane('pane_Provincia_3').style.zIndex = 403;
+        map.getPane('pane_Provincia_3').style['mix-blend-mode'] = 'normal';
+        var layer_Provincia_3 = new L.geoJson(json_Provincia_3, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_Provincia_3',
+            layerName: 'layer_Provincia_3',
+            pane: 'pane_Provincia_3',
+            onEachFeature: pop_Provincia_3,
+            style: style_Provincia_3_0,
+        });
+        bounds_group.addLayer(layer_Provincia_3);
+        map.addLayer(layer_Provincia_3);
+        function pop_Miliaria_4(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['name'] !== null ? autolinker.link(feature.properties['name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['status'] !== null ? autolinker.link(feature.properties['status'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Miliaria_4_0() {
+            return {
+                pane: 'pane_Miliaria_4',
+                shape: 'diamond',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(128,17,25,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,255,255,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Miliaria_4');
+        map.getPane('pane_Miliaria_4').style.zIndex = 404;
+        map.getPane('pane_Miliaria_4').style['mix-blend-mode'] = 'normal';
+        var layer_Miliaria_4 = new L.geoJson(json_Miliaria_4, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Miliaria_4',
+            layerName: 'layer_Miliaria_4',
+            pane: 'pane_Miliaria_4',
+            onEachFeature: pop_Miliaria_4,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.shapeMarker(latlng, style_Miliaria_4_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Miliaria_4);
+        function pop_Mansionesmutationesetal_5(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['name'] !== null ? autolinker.link(feature.properties['name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fontes'] !== null ? autolinker.link(feature.properties['fontes'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Mansionesmutationesetal_5_0() {
+            return {
+                pane: 'pane_Mansionesmutationesetal_5',
+                shape: 'diamond',
+                radius: 3.0,
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,0,0,1.0)',
+                interactive: false,
+            }
+        }
+        map.createPane('pane_Mansionesmutationesetal_5');
+        map.getPane('pane_Mansionesmutationesetal_5').style.zIndex = 405;
+        map.getPane('pane_Mansionesmutationesetal_5').style['mix-blend-mode'] = 'normal';
+        var layer_Mansionesmutationesetal_5 = new L.geoJson(json_Mansionesmutationesetal_5, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_Mansionesmutationesetal_5',
+            layerName: 'layer_Mansionesmutationesetal_5',
+            pane: 'pane_Mansionesmutationesetal_5',
+            onEachFeature: pop_Mansionesmutationesetal_5,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.shapeMarker(latlng, style_Mansionesmutationesetal_5_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Mansionesmutationesetal_5);
+        map.addLayer(layer_Mansionesmutationesetal_5);
+        function pop_Stipendiariaetal_6(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['name'] !== null ? autolinker.link(feature.properties['name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fontes'] !== null ? autolinker.link(feature.properties['fontes'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Stipendiariaetal_6_0() {
+            return {
+                pane: 'pane_Stipendiariaetal_6',
+                radius: 3.0,
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,0,0,1.0)',
+                interactive: false,
+            }
+        }
+        map.createPane('pane_Stipendiariaetal_6');
+        map.getPane('pane_Stipendiariaetal_6').style.zIndex = 406;
+        map.getPane('pane_Stipendiariaetal_6').style['mix-blend-mode'] = 'normal';
+        var layer_Stipendiariaetal_6 = new L.geoJson(json_Stipendiariaetal_6, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_Stipendiariaetal_6',
+            layerName: 'layer_Stipendiariaetal_6',
+            pane: 'pane_Stipendiariaetal_6',
+            onEachFeature: pop_Stipendiariaetal_6,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_Stipendiariaetal_6_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Stipendiariaetal_6);
+        map.addLayer(layer_Stipendiariaetal_6);
+        function pop_Latinorum_7(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['name'] !== null ? autolinker.link(feature.properties['name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fontes'] !== null ? autolinker.link(feature.properties['fontes'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Latinorum_7_0() {
+            return {
+                pane: 'pane_Latinorum_7',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(150,30,100,1.0)',
+                interactive: false,
+            }
+        }
+        map.createPane('pane_Latinorum_7');
+        map.getPane('pane_Latinorum_7').style.zIndex = 407;
+        map.getPane('pane_Latinorum_7').style['mix-blend-mode'] = 'normal';
+        var layer_Latinorum_7 = new L.geoJson(json_Latinorum_7, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_Latinorum_7',
+            layerName: 'layer_Latinorum_7',
+            pane: 'pane_Latinorum_7',
+            onEachFeature: pop_Latinorum_7,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_Latinorum_7_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Latinorum_7);
+        map.addLayer(layer_Latinorum_7);
+        function pop_CiviumRomanorum_8(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['name'] !== null ? autolinker.link(feature.properties['name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fontes'] !== null ? autolinker.link(feature.properties['fontes'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_CiviumRomanorum_8_0() {
+            return {
+                pane: 'pane_CiviumRomanorum_8',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(150,30,100,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,255,255,1.0)',
+                interactive: false,
+            }
+        }
+        map.createPane('pane_CiviumRomanorum_8');
+        map.getPane('pane_CiviumRomanorum_8').style.zIndex = 408;
+        map.getPane('pane_CiviumRomanorum_8').style['mix-blend-mode'] = 'normal';
+        var layer_CiviumRomanorum_8 = new L.geoJson(json_CiviumRomanorum_8, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_CiviumRomanorum_8',
+            layerName: 'layer_CiviumRomanorum_8',
+            pane: 'pane_CiviumRomanorum_8',
+            onEachFeature: pop_CiviumRomanorum_8,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_CiviumRomanorum_8_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_CiviumRomanorum_8);
+        map.addLayer(layer_CiviumRomanorum_8);
+        function pop_Coloniae_9(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['name'] !== null ? autolinker.link(feature.properties['name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fontes'] !== null ? autolinker.link(feature.properties['fontes'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Coloniae_9_0() {
+            return {
+                pane: 'pane_Coloniae_9',
+                radius: 6.0,
+                opacity: 1,
+                color: 'rgba(150,30,100,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 4.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,255,255,1.0)',
+                interactive: false,
+            }
+        }
+        map.createPane('pane_Coloniae_9');
+        map.getPane('pane_Coloniae_9').style.zIndex = 409;
+        map.getPane('pane_Coloniae_9').style['mix-blend-mode'] = 'normal';
+        var layer_Coloniae_9 = new L.geoJson(json_Coloniae_9, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_Coloniae_9',
+            layerName: 'layer_Coloniae_9',
+            pane: 'pane_Coloniae_9',
+            onEachFeature: pop_Coloniae_9,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_Coloniae_9_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Coloniae_9);
+        map.addLayer(layer_Coloniae_9);
+        function pop_CaputProvinciae_10(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['name'] !== null ? autolinker.link(feature.properties['name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fontes'] !== null ? autolinker.link(feature.properties['fontes'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_CaputProvinciae_10_0() {
+            return {
+                pane: 'pane_CaputProvinciae_10',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(150,30,100,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 6.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,255,255,1.0)',
+                interactive: false,
+            }
+        }
+        map.createPane('pane_CaputProvinciae_10');
+        map.getPane('pane_CaputProvinciae_10').style.zIndex = 410;
+        map.getPane('pane_CaputProvinciae_10').style['mix-blend-mode'] = 'normal';
+        var layer_CaputProvinciae_10 = new L.geoJson(json_CaputProvinciae_10, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_CaputProvinciae_10',
+            layerName: 'layer_CaputProvinciae_10',
+            pane: 'pane_CaputProvinciae_10',
+            onEachFeature: pop_CaputProvinciae_10,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_CaputProvinciae_10_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_CaputProvinciae_10);
+        map.addLayer(layer_CaputProvinciae_10);
+        function pop_Sigillagraffitietal_11(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['name'] !== null ? autolinker.link(feature.properties['name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ref'] !== null ? autolinker.link(feature.properties['ref'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Sigillagraffitietal_11_0(feature) {
+            if (feature.properties['q2wHide_cantidad'] >= 0.000000 && feature.properties['q2wHide_cantidad'] <= 1.000000 ) {
+                return {
+                pane: 'pane_Sigillagraffitietal_11',
+                radius: 2.5,
+                opacity: 1,
+                color: 'rgba(227,26,28,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(227,63,26,0.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['q2wHide_cantidad'] >= 1.000000 && feature.properties['q2wHide_cantidad'] <= 2.000000 ) {
+                return {
+                pane: 'pane_Sigillagraffitietal_11',
+                radius: 5.0,
+                opacity: 1,
+                color: 'rgba(227,26,28,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 3.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(227,63,26,0.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['q2wHide_cantidad'] >= 2.000000 && feature.properties['q2wHide_cantidad'] <= 3.000000 ) {
+                return {
+                pane: 'pane_Sigillagraffitietal_11',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(227,26,28,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 4.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(227,63,26,0.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['q2wHide_cantidad'] >= 3.000000 && feature.properties['q2wHide_cantidad'] <= 5.000000 ) {
+                return {
+                pane: 'pane_Sigillagraffitietal_11',
+                radius: 10.4,
+                opacity: 1,
+                color: 'rgba(227,26,28,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 4.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(227,63,26,0.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['q2wHide_cantidad'] >= 5.000000 && feature.properties['q2wHide_cantidad'] <= 10.000000 ) {
+                return {
+                pane: 'pane_Sigillagraffitietal_11',
+                radius: 12.86666,
+                opacity: 1,
+                color: 'rgba(227,26,28,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 4.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(227,63,26,0.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['q2wHide_cantidad'] >= 10.000000 && feature.properties['q2wHide_cantidad'] <= 15.000000 ) {
+                return {
+                pane: 'pane_Sigillagraffitietal_11',
+                radius: 14.0,
+                opacity: 1,
+                color: 'rgba(227,26,28,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 4.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(227,63,26,0.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['q2wHide_cantidad'] >= 15.000000 && feature.properties['q2wHide_cantidad'] <= 20.000000 ) {
+                return {
+                pane: 'pane_Sigillagraffitietal_11',
+                radius: 18.0,
+                opacity: 1,
+                color: 'rgba(227,26,28,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 4.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(227,63,26,0.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['q2wHide_cantidad'] >= 20.000000 && feature.properties['q2wHide_cantidad'] <= 25.000000 ) {
+                return {
+                pane: 'pane_Sigillagraffitietal_11',
+                radius: 20.0,
+                opacity: 1,
+                color: 'rgba(227,26,28,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 4.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(227,63,26,0.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['q2wHide_cantidad'] >= 25.000000 && feature.properties['q2wHide_cantidad'] <= 30.000000 ) {
+                return {
+                pane: 'pane_Sigillagraffitietal_11',
+                radius: 24.0,
+                opacity: 1,
+                color: 'rgba(227,26,28,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 4.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(227,63,26,0.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['q2wHide_cantidad'] >= 30.000000 && feature.properties['q2wHide_cantidad'] <= 40.000000 ) {
+                return {
+                pane: 'pane_Sigillagraffitietal_11',
+                radius: 26.0,
+                opacity: 1,
+                color: 'rgba(227,26,28,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 4.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(227,63,26,0.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['q2wHide_cantidad'] >= 40.000000 && feature.properties['q2wHide_cantidad'] <= 50.000000 ) {
+                return {
+                pane: 'pane_Sigillagraffitietal_11',
+                radius: 28.0,
+                opacity: 1,
+                color: 'rgba(227,26,28,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 4.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(227,63,26,0.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['q2wHide_cantidad'] >= 50.000000 && feature.properties['q2wHide_cantidad'] <= 60.000000 ) {
+                return {
+                pane: 'pane_Sigillagraffitietal_11',
+                radius: 30.0,
+                opacity: 1,
+                color: 'rgba(227,26,28,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 4.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(227,63,26,0.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['q2wHide_cantidad'] >= 60.000000 && feature.properties['q2wHide_cantidad'] <= 75.000000 ) {
+                return {
+                pane: 'pane_Sigillagraffitietal_11',
+                radius: 32.0,
+                opacity: 1,
+                color: 'rgba(227,26,28,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 4.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(227,63,26,0.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['q2wHide_cantidad'] >= 75.000000 && feature.properties['q2wHide_cantidad'] <= 100.000000 ) {
+                return {
+                pane: 'pane_Sigillagraffitietal_11',
+                radius: 34.0,
+                opacity: 1,
+                color: 'rgba(227,26,28,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 4.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(227,63,26,0.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['q2wHide_cantidad'] >= 100.000000 && feature.properties['q2wHide_cantidad'] <= 200.000000 ) {
+                return {
+                pane: 'pane_Sigillagraffitietal_11',
+                radius: 38.0,
+                opacity: 1,
+                color: 'rgba(227,26,28,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 4.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(227,63,26,0.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['q2wHide_cantidad'] >= 200.000000 && feature.properties['q2wHide_cantidad'] <= 306.000000 ) {
+                return {
+                pane: 'pane_Sigillagraffitietal_11',
+                radius: 46.0,
+                opacity: 1,
+                color: 'rgba(227,26,28,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 4.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(227,63,26,0.0)',
+                interactive: true,
+            }
+            }
+        }
+        map.createPane('pane_Sigillagraffitietal_11');
+        map.getPane('pane_Sigillagraffitietal_11').style.zIndex = 411;
+        map.getPane('pane_Sigillagraffitietal_11').style['mix-blend-mode'] = 'normal';
+        var layer_Sigillagraffitietal_11 = new L.geoJson(json_Sigillagraffitietal_11, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Sigillagraffitietal_11',
+            layerName: 'layer_Sigillagraffitietal_11',
+            pane: 'pane_Sigillagraffitietal_11',
+            onEachFeature: pop_Sigillagraffitietal_11,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_Sigillagraffitietal_11_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Sigillagraffitietal_11);
+        function pop_Epigraphia_12(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['name'] !== null ? autolinker.link(feature.properties['name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ref'] !== null ? autolinker.link(feature.properties['ref'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Epigraphia_12_0(feature) {
+            if (feature.properties['q2wHide_cantidad'] >= 0.000000 && feature.properties['q2wHide_cantidad'] <= 1.000000 ) {
+                return {
+                pane: 'pane_Epigraphia_12',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 0.8,
+                fill: true,
+                fillOpacity: 0.7,
+                fillColor: 'rgba(227,63,26,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['q2wHide_cantidad'] >= 1.000000 && feature.properties['q2wHide_cantidad'] <= 2.000000 ) {
+                return {
+                pane: 'pane_Epigraphia_12',
+                radius: 5.0,
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 0.8,
+                fill: true,
+                fillOpacity: 0.7,
+                fillColor: 'rgba(227,63,26,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['q2wHide_cantidad'] >= 2.000000 && feature.properties['q2wHide_cantidad'] <= 3.000000 ) {
+                return {
+                pane: 'pane_Epigraphia_12',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 0.8,
+                fill: true,
+                fillOpacity: 0.7,
+                fillColor: 'rgba(227,63,26,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['q2wHide_cantidad'] >= 3.000000 && feature.properties['q2wHide_cantidad'] <= 5.000000 ) {
+                return {
+                pane: 'pane_Epigraphia_12',
+                radius: 10.4,
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 0.8,
+                fill: true,
+                fillOpacity: 0.7,
+                fillColor: 'rgba(227,63,26,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['q2wHide_cantidad'] >= 5.000000 && feature.properties['q2wHide_cantidad'] <= 10.000000 ) {
+                return {
+                pane: 'pane_Epigraphia_12',
+                radius: 12.86666,
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 0.8,
+                fill: true,
+                fillOpacity: 0.7,
+                fillColor: 'rgba(227,63,26,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['q2wHide_cantidad'] >= 10.000000 && feature.properties['q2wHide_cantidad'] <= 15.000000 ) {
+                return {
+                pane: 'pane_Epigraphia_12',
+                radius: 14.0,
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 0.8,
+                fill: true,
+                fillOpacity: 0.7,
+                fillColor: 'rgba(227,63,26,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['q2wHide_cantidad'] >= 15.000000 && feature.properties['q2wHide_cantidad'] <= 20.000000 ) {
+                return {
+                pane: 'pane_Epigraphia_12',
+                radius: 18.0,
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 0.8,
+                fill: true,
+                fillOpacity: 0.7,
+                fillColor: 'rgba(227,63,26,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['q2wHide_cantidad'] >= 20.000000 && feature.properties['q2wHide_cantidad'] <= 25.000000 ) {
+                return {
+                pane: 'pane_Epigraphia_12',
+                radius: 20.0,
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 0.8,
+                fill: true,
+                fillOpacity: 0.7,
+                fillColor: 'rgba(227,63,26,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['q2wHide_cantidad'] >= 25.000000 && feature.properties['q2wHide_cantidad'] <= 30.000000 ) {
+                return {
+                pane: 'pane_Epigraphia_12',
+                radius: 24.0,
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 0.8,
+                fill: true,
+                fillOpacity: 0.7,
+                fillColor: 'rgba(227,63,26,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['q2wHide_cantidad'] >= 30.000000 && feature.properties['q2wHide_cantidad'] <= 40.000000 ) {
+                return {
+                pane: 'pane_Epigraphia_12',
+                radius: 26.0,
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 0.8,
+                fill: true,
+                fillOpacity: 0.7,
+                fillColor: 'rgba(227,63,26,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['q2wHide_cantidad'] >= 40.000000 && feature.properties['q2wHide_cantidad'] <= 50.000000 ) {
+                return {
+                pane: 'pane_Epigraphia_12',
+                radius: 28.0,
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 0.8,
+                fill: true,
+                fillOpacity: 0.7,
+                fillColor: 'rgba(227,63,26,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['q2wHide_cantidad'] >= 50.000000 && feature.properties['q2wHide_cantidad'] <= 60.000000 ) {
+                return {
+                pane: 'pane_Epigraphia_12',
+                radius: 30.0,
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 0.8,
+                fill: true,
+                fillOpacity: 0.7,
+                fillColor: 'rgba(227,63,26,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['q2wHide_cantidad'] >= 60.000000 && feature.properties['q2wHide_cantidad'] <= 75.000000 ) {
+                return {
+                pane: 'pane_Epigraphia_12',
+                radius: 32.0,
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 0.8,
+                fill: true,
+                fillOpacity: 0.7,
+                fillColor: 'rgba(227,63,26,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['q2wHide_cantidad'] >= 75.000000 && feature.properties['q2wHide_cantidad'] <= 100.000000 ) {
+                return {
+                pane: 'pane_Epigraphia_12',
+                radius: 34.0,
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 0.8,
+                fill: true,
+                fillOpacity: 0.7,
+                fillColor: 'rgba(227,63,26,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['q2wHide_cantidad'] >= 100.000000 && feature.properties['q2wHide_cantidad'] <= 200.000000 ) {
+                return {
+                pane: 'pane_Epigraphia_12',
+                radius: 38.0,
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 0.8,
+                fill: true,
+                fillOpacity: 0.7,
+                fillColor: 'rgba(227,63,26,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['q2wHide_cantidad'] >= 200.000000 && feature.properties['q2wHide_cantidad'] <= 306.000000 ) {
+                return {
+                pane: 'pane_Epigraphia_12',
+                radius: 46.0,
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 0.8,
+                fill: true,
+                fillOpacity: 0.7,
+                fillColor: 'rgba(227,63,26,1.0)',
+                interactive: true,
+            }
+            }
+        }
+        map.createPane('pane_Epigraphia_12');
+        map.getPane('pane_Epigraphia_12').style.zIndex = 412;
+        map.getPane('pane_Epigraphia_12').style['mix-blend-mode'] = 'normal';
+        var layer_Epigraphia_12 = new L.geoJson(json_Epigraphia_12, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Epigraphia_12',
+            layerName: 'layer_Epigraphia_12',
+            pane: 'pane_Epigraphia_12',
+            onEachFeature: pop_Epigraphia_12,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_Epigraphia_12_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Epigraphia_12);
+        map.addLayer(layer_Epigraphia_12);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'Epigraphia<br /><table><tr><td style="text-align: center;"><img src="legend/Epigraphia_12_010.png" /></td><td>0 - 1</td></tr><tr><td style="text-align: center;"><img src="legend/Epigraphia_12_121.png" /></td><td>1 - 2</td></tr><tr><td style="text-align: center;"><img src="legend/Epigraphia_12_232.png" /></td><td>2 - 3</td></tr><tr><td style="text-align: center;"><img src="legend/Epigraphia_12_353.png" /></td><td>3 - 5</td></tr><tr><td style="text-align: center;"><img src="legend/Epigraphia_12_5104.png" /></td><td>5 - 10</td></tr><tr><td style="text-align: center;"><img src="legend/Epigraphia_12_10155.png" /></td><td>10 - 15</td></tr><tr><td style="text-align: center;"><img src="legend/Epigraphia_12_15206.png" /></td><td>15 - 20</td></tr><tr><td style="text-align: center;"><img src="legend/Epigraphia_12_20257.png" /></td><td>20 - 25</td></tr><tr><td style="text-align: center;"><img src="legend/Epigraphia_12_25308.png" /></td><td>25 - 30</td></tr><tr><td style="text-align: center;"><img src="legend/Epigraphia_12_30409.png" /></td><td>30 - 40</td></tr><tr><td style="text-align: center;"><img src="legend/Epigraphia_12_405010.png" /></td><td>40 - 50</td></tr><tr><td style="text-align: center;"><img src="legend/Epigraphia_12_506011.png" /></td><td>50 - 60</td></tr><tr><td style="text-align: center;"><img src="legend/Epigraphia_12_607512.png" /></td><td>60 - 75</td></tr><tr><td style="text-align: center;"><img src="legend/Epigraphia_12_7510013.png" /></td><td>75 - 100</td></tr><tr><td style="text-align: center;"><img src="legend/Epigraphia_12_10020014.png" /></td><td>100 - 200</td></tr><tr><td style="text-align: center;"><img src="legend/Epigraphia_12_20030615.png" /></td><td>200 - 306</td></tr></table>': layer_Epigraphia_12,'Sigilla, graffiti et al.<br /><table><tr><td style="text-align: center;"><img src="legend/Sigillagraffitietal_11_010.png" /></td><td>0 - 1</td></tr><tr><td style="text-align: center;"><img src="legend/Sigillagraffitietal_11_121.png" /></td><td>1 - 2</td></tr><tr><td style="text-align: center;"><img src="legend/Sigillagraffitietal_11_232.png" /></td><td>2 - 3</td></tr><tr><td style="text-align: center;"><img src="legend/Sigillagraffitietal_11_353.png" /></td><td>3 - 5</td></tr><tr><td style="text-align: center;"><img src="legend/Sigillagraffitietal_11_5104.png" /></td><td>5 - 10</td></tr><tr><td style="text-align: center;"><img src="legend/Sigillagraffitietal_11_10155.png" /></td><td>10 - 15</td></tr><tr><td style="text-align: center;"><img src="legend/Sigillagraffitietal_11_15206.png" /></td><td>15 - 20</td></tr><tr><td style="text-align: center;"><img src="legend/Sigillagraffitietal_11_20257.png" /></td><td>20 - 25</td></tr><tr><td style="text-align: center;"><img src="legend/Sigillagraffitietal_11_25308.png" /></td><td>25 - 30</td></tr><tr><td style="text-align: center;"><img src="legend/Sigillagraffitietal_11_30409.png" /></td><td>30 - 40</td></tr><tr><td style="text-align: center;"><img src="legend/Sigillagraffitietal_11_405010.png" /></td><td>40 - 50</td></tr><tr><td style="text-align: center;"><img src="legend/Sigillagraffitietal_11_506011.png" /></td><td>50 - 60</td></tr><tr><td style="text-align: center;"><img src="legend/Sigillagraffitietal_11_607512.png" /></td><td>60 - 75</td></tr><tr><td style="text-align: center;"><img src="legend/Sigillagraffitietal_11_7510013.png" /></td><td>75 - 100</td></tr><tr><td style="text-align: center;"><img src="legend/Sigillagraffitietal_11_10020014.png" /></td><td>100 - 200</td></tr><tr><td style="text-align: center;"><img src="legend/Sigillagraffitietal_11_20030615.png" /></td><td>200 - 306</td></tr></table>': layer_Sigillagraffitietal_11,'<img src="legend/CaputProvinciae_10.png" /> Caput Provinciae': layer_CaputProvinciae_10,'<img src="legend/Coloniae_9.png" /> Coloniae': layer_Coloniae_9,'<img src="legend/CiviumRomanorum_8.png" /> Civium Romanorum': layer_CiviumRomanorum_8,'<img src="legend/Latinorum_7.png" /> Latinorum': layer_Latinorum_7,'<img src="legend/Stipendiariaetal_6.png" /> Stipendiaria et al': layer_Stipendiariaetal_6,'<img src="legend/Mansionesmutationesetal_5.png" /> Mansiones, mutationes et al': layer_Mansionesmutationesetal_5,'<img src="legend/Miliaria_4.png" /> Miliaria': layer_Miliaria_4,'<img src="legend/Provincia_3.png" /> Provincia': layer_Provincia_3,'<img src="legend/Conuentus_2.png" /> Conuentus': layer_Conuentus_2,"ESRI World Hillshade": layer_ESRIWorldHillshade_1,"Esri World Imagery": layer_EsriWorldImagery_0,}).addTo(map);
+        setBounds();
+        var i = 0;
+        layer_Mansionesmutationesetal_5.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['name'] !== null?String('<div style="color: #000000; font-size: 10pt; font-family: \'Georgia\', sans-serif;">' + layer.feature.properties['name']) + '</div>':''), {permanent: true, offset: [-0, -3], className: 'css_Mansionesmutationesetal_5'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        var i = 0;
+        layer_Stipendiariaetal_6.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['name'] !== null?String('<div style="color: #000000; font-size: 12pt; font-family: \'Georgia\', sans-serif;">' + layer.feature.properties['name']) + '</div>':''), {permanent: true, offset: [-0, -1], className: 'css_Stipendiariaetal_6'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        var i = 0;
+        layer_Latinorum_7.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['name'] !== null?String('<div style="color: #000000; font-size: 13pt; font-family: \'Georgia\', sans-serif;">' + layer.feature.properties['name']) + '</div>':''), {permanent: true, offset: [-0, -1], className: 'css_Latinorum_7'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        var i = 0;
+        layer_CiviumRomanorum_8.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['name'] !== null?String('<div style="color: #000000; font-size: 13pt; font-family: \'Georgia\', sans-serif;">' + layer.feature.properties['name']) + '</div>':''), {permanent: true, offset: [-0, -3], className: 'css_CiviumRomanorum_8'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        var i = 0;
+        layer_Coloniae_9.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['name'] !== null?String('<div style="color: #000000; font-size: 14pt; font-family: \'Georgia\', sans-serif;">' + layer.feature.properties['name']) + '</div>':''), {permanent: true, offset: [-0, -5], className: 'css_Coloniae_9'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        var i = 0;
+        layer_CaputProvinciae_10.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['name'] !== null?String('<div style="color: #000000; font-size: 15pt; font-weight: bold; font-family: \'Georgia\', sans-serif;">' + layer.feature.properties['name']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_CaputProvinciae_10'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        map.addControl(new L.Control.Search({
+            layer: layer_Epigraphia_12,
+            initial: false,
+            hideMarkerOnCollapse: true,
+            propertyName: 'name'}));
+        document.getElementsByClassName('search-button')[0].className +=
+         ' fa fa-binoculars';
+        resetLabels([layer_Mansionesmutationesetal_5,layer_Stipendiariaetal_6,layer_Latinorum_7,layer_CiviumRomanorum_8,layer_Coloniae_9,layer_CaputProvinciae_10,layer_Sigillagraffitietal_11,layer_Epigraphia_12]);
+        map.on("zoomend", function(){
+            resetLabels([layer_Mansionesmutationesetal_5,layer_Stipendiariaetal_6,layer_Latinorum_7,layer_CiviumRomanorum_8,layer_Coloniae_9,layer_CaputProvinciae_10,layer_Sigillagraffitietal_11,layer_Epigraphia_12]);
+        });
+        map.on("layeradd", function(){
+            resetLabels([layer_Mansionesmutationesetal_5,layer_Stipendiariaetal_6,layer_Latinorum_7,layer_CiviumRomanorum_8,layer_Coloniae_9,layer_CaputProvinciae_10,layer_Sigillagraffitietal_11,layer_Epigraphia_12]);
+        });
+        map.on("layerremove", function(){
+            resetLabels([layer_Mansionesmutationesetal_5,layer_Stipendiariaetal_6,layer_Latinorum_7,layer_CiviumRomanorum_8,layer_Coloniae_9,layer_CaputProvinciae_10,layer_Sigillagraffitietal_11,layer_Epigraphia_12]);
+        });
+        </script>
+    </body>
+</html>
