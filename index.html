@@ -1188,6 +1188,26 @@ map.on('drag', function() {
         map.on("layerremove", function(){
             resetLabels([layer_Mansionesmutationesetal_5,layer_Stipendiariaetal_6,layer_Latinorum_7,layer_CiviumRomanorum_8,layer_Coloniae_9,layer_CaputProvinciae_10,layer_Sigillagraffitietal_11,layer_Epigraphia_12]);
         });
+        L.control.scale({
+            metric: true,
+            imperial: false,
+        }).addTo(map);
+
+        L.Control.Watermark=L.Control.extend({
+            onAdd:function(map){
+                var img = L.DomUtil.create('img');
+                img.src = 'images/logo.png';
+                img.style.widt = '50px'
+                return img;
+            },
+            onRemove:function(map){},
+        });
+
+        L.control.watermark = function(opts){
+            return new L.Control.Watermark(opts);
+}
+
+        L.control.watermark({position:'bottomleft'}).addTo(map)
         </script>
     </body>
 </html>
